@@ -1,0 +1,4 @@
+ARG KEYCLOAK_BASE_VERSION
+FROM jboss/keycloak:${KEYCLOAK_BASE_VERSION}
+ENV JAVA_TOOL_OPTIONS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+COPY tokenchannel-authenticator/target/tokenchannel-authenticator.jar /opt/jboss/keycloak/standalone/deployments/
