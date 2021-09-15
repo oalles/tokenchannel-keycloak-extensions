@@ -18,7 +18,6 @@ import org.keycloak.models.UserModel;
 @Slf4j
 public class TokenChannelAuthenticator implements Authenticator {
 
-
     @Override
     public void authenticate(AuthenticationFlowContext context) {
 

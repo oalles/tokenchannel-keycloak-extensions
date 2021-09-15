@@ -23,6 +23,11 @@ docker build -f build/Dockerfile.debug -t tokenchannel-keycloak:15-TC . --build-
 Check this docker-compose config file. Requires a Postgresql database.
 
 ```bash
+mkdir pg
+sudo chown -R 1001:1001 pg
+```
+
+```yaml
 version: '2.1'
 services:
   db:
@@ -37,7 +42,7 @@ services:
       - POSTGRESQL_USERNAME=${DB_USER}
       - POSTGRESQL_DATABASE=keycloak
     volumes:
-      - ~/.pg/data:/var/lib/postgresql/data
+      - ./pg:/bitnami/postgresql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s

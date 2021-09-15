@@ -1,6 +1,5 @@
 package io.tokenchannel.keycloak.authenticator;
 
-import com.google.gson.Gson;
 import io.tokenchannel.*;
 import org.keycloak.authentication.AuthenticationFlowContext;
 import org.keycloak.authentication.AuthenticationFlowError;
@@ -33,15 +32,17 @@ public class AuthenticationFlowContextHandler {
 
     public TokenChannel getTokenChannelClient() {
         if (tokenChannel == null) {
+
             AuthenticatorConfigModel config = context.getAuthenticatorConfig();
             String apiKey = config.getConfig().get("apiKey");
             Boolean testModeEnabled = Boolean.parseBoolean(config.getConfig().get("testMode"));
 
-            tokenChannel = new TokenChannel(TokenChannelProperties.builder()
-                    .apiKey(apiKey)
-                    .testMode(testModeEnabled)
-                    .timeoutInSeconds(10)
-                    .build(), new Gson());
+            TokenChannelProperties properties = new TokenChannelProperties();
+            properties.setApiKey(apiKey);
+            properties.setTestMode(testModeEnabled);
+            properties.setTimeoutInSeconds(10);
+
+            tokenChannel = new TokenChannel(properties);
         }
         return tokenChannel;
     }
