@@ -73,7 +73,7 @@ public class TokenChannelAuthenticator implements Authenticator {
 
     @Override
     public boolean requiresUser() {
-        // 2 Step auth - So first step retrieves the user
+        // 2 Step auth - So first step must provide user
         return true;
     }
 

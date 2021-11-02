@@ -11,6 +11,9 @@ import org.keycloak.sessions.AuthenticationSessionModel;
 import javax.ws.rs.core.Response;
 import java.util.Locale;
 
+/**
+ * Higher-level interface to the context that makes it easier to use
+ */
 public class AuthenticationFlowContextHandler {
 
     public static final String TC_AUTH_TEMPLATE = "tc-auth.ftl";

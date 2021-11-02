@@ -2,7 +2,9 @@ This is the Tokenchannel's Keycloak Customization project.
 
 Current customizations are being developed against KC version 15.
 
-**Current KEYCLOAK_BASE_VERSION**: 15.0.1
+**Current KEYCLOAK_BASE_VERSION**: 15.0.2
+
+[![MFA in Keycloak with TokenChannel.io](https://img.youtube.com/vi/l_2feYOLcZA/maxresdefault.jpg)](https://youtu.be/l_2feYOLcZA)
 
 ## Docker artifact construction
 
@@ -11,7 +13,7 @@ Current customizations are being developed against KC version 15.
 # Project Root Folder
 cd tokenchannel-keycloak-extensions
 
-# Changes in the event listeners? So jars are generated
+# Changes in extensions code? So jars are generated
 cd tokenchannel-authenticator;mvn clean install;cd ..;
 
 # Build docker artifact. Choose Dockerfile.debug if want to remotely debug the code
@@ -20,12 +22,7 @@ docker build -f build/Dockerfile.debug -t tokenchannel-keycloak:15-TC . --build-
 
 ## Run it locally
 
-Check this docker-compose config file. Requires a Postgresql database.
-
-```bash
-mkdir pg
-sudo chown -R 1001:1001 pg
-```
+Check this docker-compose config file. 
 
 ```yaml
 version: '2.1'
@@ -69,6 +66,15 @@ services:
       - "8000:8000" # Debug
 ```
 
+in order to run:
+
+```bash
+cd deployment
+mkdir pg
+sudo chown -R 1001:1001 pg
+docker-compose up
+```
+
 ## Remote Debugging -  IDEA
 
 We are going to provide an additional Dockerfile, `Dockerfile.debug` that creates a docker image that informs the JRE to
@@ -85,3 +91,7 @@ Host: `127.0.0.1`   Port: `8000`
 Command Line Arguments for JVM: `-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000` same than Dockerfile.debug
 
 Use Module Class Path: `tokenchannel-authenticator`
+
+## Credits
+
+We would like to credit, [Niko Goblre's](https://www.n-k.de/2020/12/keycloak-2fa-sms-authentication.html) project that must appear as a first reference in the subject and congratulate him for his fantastic work .

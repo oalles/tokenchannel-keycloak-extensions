@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.keycloak</groupId>
         <artifactId>keycloak-parent</artifactId>
-        <version>15.0.1</version>
+        <version>15.0.2</version>
     </parent>
 
     <name>TokenChannel Authenticator</name>
@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <keycloak.version>15.0.1</keycloak.version>
+        <keycloak.version>15.0.2</keycloak.version>
         <lombok.version>1.18.18</lombok.version>
         <maven-shade.version>3.2.4</maven-shade.version>
         <tokenchannel.version>0.16.RELEASE</tokenchannel.version>
